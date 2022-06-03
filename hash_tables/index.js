@@ -27,14 +27,53 @@ class HashTable {
     }
   }
 
-  get(key) {}
+  get(key) {
+    //1. Convertir la clave en una dirección -> index
+    let index = this._hash(key);
+    //2. Obtenemos el bucket -> el arreglo con todos los pares (clave, valor) almacenados
+    let bucket = this.data[index];
+    //3. Iterar sobre bucket (comprobar si tenemos pares clave valor almacenados)
+    if (bucket && bucket.length > 0) {
+      //O(n)
+      for (let i = 0; i < bucket.length; i++) {
+        //4. Buscar la clave en el bucket
+        if (bucket[i][0] === key) {
+          return bucket[i][1];
+        }
+      }
+    } else {
+      return undefined;
+    }
+  }
+
+  remove(key) {
+    //1. Convertir la clave en una dirección -> index
+    let index = this._hash(key);
+    //2. Obtenemos el bucket -> el arreglo con todos los pares (clave, valor) almacenados
+    let bucket = this.data[index];
+    //3. Iterar sobre bucket (comprobar si tenemos pares clave valor almacenados)
+    if (bucket && bucket.length > 0) {
+      for (let i = 0; i < bucket.length; i++) {
+        //O(n)
+        //4. Buscar la clave en el bucket
+        if (bucket[i][0] === key) {
+          return this.data[index].splice(i, 1);
+        }
+      }
+    } else {
+      return undefined;
+    }
+  }
 }
 
-const myHashTable = new HashTable(5000);
+const myHashTable = new HashTable(5);
 myHashTable.set('name', 'Academlo');
 myHashTable.set('image', 'http://academlo.com/images/profile.png');
 myHashTable.set('email', 'info@academlo.com');
 myHashTable.set('password', 'academlo1234');
 myHashTable.set('lastname', 'prueba');
-myHashTable.set('image', 'http://academlo.com/images/profiles.png');
+// console.log(myHashTable.data);
+myHashTable.remove('image');
+myHashTable.remove('name');
+myHashTable.remove('email');
 console.log(myHashTable.data);
