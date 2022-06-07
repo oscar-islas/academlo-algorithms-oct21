@@ -33,14 +33,6 @@ function query(x) {
   return 0;
 }
 
-// Driver program
-// var a = [1, 3, 2, 4, 2, 1];
-// var n = a.length;
-// countFreq(a, n);
-// document.write(query(2) + '<br>');
-// document.write(query(3) + '<br>');
-// document.write(query(5) + '<br>');
-
 let arr = [0, 5, 5, 5, 4];
 let x = 5;
 
