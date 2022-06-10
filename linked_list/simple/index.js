@@ -68,3 +68,31 @@ class LinkedList {
     return list;
   }
 }
+
+const newLinkedList = new LinkedList();
+newLinkedList.insert(5);
+newLinkedList.insert(5);
+newLinkedList.insert(5);
+newLinkedList.insert(12);
+newLinkedList.insert(15);
+newLinkedList.insert(15);
+newLinkedList.insert(20);
+
+function removeD(linkedList) {
+  let list = [];
+  let currentNode = linkedList.head;
+  while (currentNode) {
+    let temp = currentNode;
+    while (temp && temp.value === currentNode.value) {
+      temp = temp.next;
+    }
+    list.push(currentNode.value);
+    currentNode.next = temp;
+    currentNode = currentNode.next;
+  }
+
+  return list;
+}
+
+console.log(removeD(newLinkedList));
+console.log(JSON.stringify(newLinkedList.head));
