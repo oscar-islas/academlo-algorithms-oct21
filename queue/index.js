@@ -34,7 +34,9 @@ class Queue {
     return this;
   }
 
-  dequeue() {}
+  dequeue() {
+    this.size--;
+  }
 }
 
 const myQueue = new Queue();
