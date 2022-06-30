@@ -5,9 +5,7 @@ function insertionSort(arr) {
 
   for (i = 0; i < length; i++) {
     if (arr[i - 1] > arr[i]) {
-      console.log('Iterador I', arr[i - 1], arr[i]);
       for (j = i; j > 0; j--) {
-        console.log('Iterador J', arr[j - 1], arr[i]);
         if (j - 1 === 0 && arr[i] < arr[0]) {
           let sortNumber = arr.splice(i, 1)[0];
           arr.unshift(sortNumber);
