@@ -98,14 +98,26 @@ const tower1 = new Tower();
 const tower2 = new Tower();
 const tower3 = new Tower();
 
-tower1.add(3);
+// tower1.add(3);
 tower1.add(2);
 tower1.add(1);
-tower1.moveTopTo(tower2);
-tower1.moveTopTo(tower2);
 
-console.log('tower 1', tower1.stack.traverse());
+function rec(n, origin, destination, aux) {
+  if (n === 0) {
+    return;
+  }
 
-// tower2.add(3);
+  rec(n - 1, origin, aux, destination);
+  origin.moveTopTo(destination);
+  rec(n - 1, aux, destination, origin);
+}
 
-console.log('tower 2', tower2.stack.traverse());
+// n(1) 1 -> 3
+// n(2) | 1 -> 2 | 1 -> 3 | 2 -> 3 |
+// n(3) | 1 -> 3 | 1 -> 2 | 3 -> 2 | 1 -> 3 | 2 -> 1 | 2 -> 3 | 1 -> 3 |
+// n(4) |
+
+rec(2, tower1, tower3, tower2);
+console.log('Origen', JSON.stringify(tower1));
+console.log('Aux', JSON.stringify(tower2));
+console.log('Destino', JSON.stringify(tower3));
