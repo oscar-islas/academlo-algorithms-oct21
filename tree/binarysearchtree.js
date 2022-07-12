@@ -136,7 +136,25 @@ class BinarySearchTree {
     return list;
   }
 
-  postOrder() {}
+  postOrder() {
+    let currentNode = this.root;
+    if (!currentNode) {
+      return null;
+    }
+
+    let list = [];
+    function traverse(currentNode) {
+      if (currentNode.left) {
+        traverse(currentNode.left);
+      }
+      if (currentNode.right) {
+        traverse(currentNode.right);
+      }
+      list.push(currentNode.value);
+    }
+    traverse(currentNode);
+    return list;
+  }
 
   preOrder() {
     //Como si estuvieramos construyendo el árbol
@@ -158,5 +176,6 @@ myBST.insert(2);
 console.log(myBST.findMin());
 console.log(myBST.findMax());
 console.log(myBST.inOrder());
+console.log(myBST.postOrder());
 
 console.log(JSON.stringify(myBST.root));
